@@ -109,6 +109,7 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::prefix('/result')->group(function(){
         Route::get('/view','backend\ResultController@view')->name('result.view');
+        Route::post('/view','backend\ResultController@queriess')->name('result.queriess');
         Route::get('/add','backend\ResultController@add')->name('result.add');
         Route::get('/make','backend\ResultController@make')->name('result.make');
         Route::post('/make','backend\ResultController@queries')->name('result.queries');

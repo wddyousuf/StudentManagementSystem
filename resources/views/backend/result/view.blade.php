@@ -10,13 +10,13 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0">
-                        Add Result
+                        View Result
                 </h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item active">Add Result</li>
+                <li class="breadcrumb-item active">View Result</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -37,12 +37,12 @@
                     <h3>
                     <i class="fa fa-plus-circle mr-1 text-info"></i>
                         Student Information
-                      <a href="{{ route('result.view') }}" class="btn btn-info float-right "><i class="fa fa-list fa-xs ml-1 mr-1"></i>View Result</a>
+                      <a href="{{ route('result.make') }}" class="btn btn-info float-right "><i class="fa fa-list fa-xs ml-1 mr-1"></i>Add Result</a>
                     </h3>
 
                   </div><!-- /.card-header -->
                   <div class="card-body">
-                      <form action="{{ route('result.queries') }}" method="post" id="myForm" name="addresult">
+                      <form action="{{ route('result.queriess') }}" method="post" id="myForm" name="viewResult">
                           @csrf
                               <div class="form-row col-md-6">
                                   <label for="year" class="mb-4 mr-4">Year</label>
@@ -67,7 +67,7 @@
                                     <input type="text" name="roll" id="roll" class="form-control float-right mb-4 col-md-10" placeholder="160601">
                                 </div>
                           <div>
-                              <input type="submit" value="Next" class="btn btn-success">
+                              <input type="submit" value="View Result" class="btn btn-success">
                           </div>
                       </form>
                   </div>
