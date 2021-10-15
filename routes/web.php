@@ -110,7 +110,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::prefix('/result')->group(function(){
         Route::get('/view','backend\ResultController@view')->name('result.view');
         Route::get('/add','backend\ResultController@add')->name('result.add');
-        Route::get('/all','backend\ResultController@all')->name('result.all');
+        Route::get('/make','backend\ResultController@make')->name('result.make');
+        Route::post('/make','backend\ResultController@queries')->name('result.queries');
         Route::post('/store','backend\ResultController@store')->name('result.store');
         Route::get('/edit/{id}','backend\ResultController@edit')->name('result.edit');
         Route::post('/update/{id}','backend\ResultController@update')->name('result.update');
@@ -143,6 +144,5 @@ Route::group(['middleware'=>'auth'],function(){
         Route::post('/store','backend\AttendanceController@store')->name('attendance.store');
         Route::get('/edit/{date}/{year}/{semester}','backend\AttendanceController@edit')->name('attendance.edit');
         Route::post('/update','backend\AttendanceController@update')->name('attendance.update');
-        Route::get('/delete/{id}','backend\AttendanceController@delete')->name('attendanceAttendance.delete');
     });
 });

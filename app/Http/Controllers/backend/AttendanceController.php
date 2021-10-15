@@ -20,21 +20,27 @@ class AttendanceController extends Controller
         return view('backend.attendance.get',$data);
     }
     public function store(Request $request){
-
-        foreach ($request->roll as  $value) {
-            $std=Student::where('roll',$value)->first();
-            $atts[]=[
-                "year"=>$std->year,
-                "semester"=>$std->semester,
-                "roll"=>$std->roll,
-                "status"=>$request->atndnc[$value],
-                "date"=>$request->att_date,
-                "att_year"=>$request->att_year,
-                "session"=>$std->session
-            ];
+        $atchk=DB::table('attendances')->where('date',$request->att_date)->first();
+        if($atchk){
+            return redirect()->back()->with('error','Attendance Taken Already');
+        }else{
+            foreach ($request->roll as  $value) {
+                $std=Student::where('roll',$value)->first();
+                $atts[]=[
+                    "year"=>$std->year,
+                    "semester"=>$std->semester,
+                    "roll"=>$std->roll,
+                    "status"=>$request->atndnc[$value],
+                    "date"=>$request->att_date,
+                    "att_year"=>$request->att_year,
+                    "session"=>$std->session
+                ];
+            }
+            $data=DB::table('attendances')->insert($atts);
+            return redirect()->route('attendance.take')->with('success', 'Attendance Taken Successfully ');
         }
-        $data=DB::table('attendances')->insert($atts);
-        return redirect()->route('attendance.take')->with('success', 'Attendance Taken Successfully ');
+
+
     }
     public function view(){
         return view('backend.attendance.view');
@@ -46,6 +52,7 @@ class AttendanceController extends Controller
         return view('backend.attendance.att_by_date',$data);
     }
     public function viewbydate($date,$year,$semester){
+        $data['date']=$date;
         $data['att_query']=DB::table('attendances')->where('year',$year)->where('semester',$semester)->where('date',$date)->get();
         return view('backend.attendance.attviewatdate',$data);
     }

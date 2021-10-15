@@ -10,13 +10,13 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0">
-                        Take Attendance
+                        Add Result
                 </h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item active">Take Attendance</li>
+                <li class="breadcrumb-item active">Add Result</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -37,12 +37,12 @@
                     <h3>
                     <i class="fa fa-plus-circle mr-1 text-info"></i>
                         Take Attendance
-                      <a href="{{ route('attendance.view') }}" class="btn btn-info float-right "><i class="fa fa-list fa-xs ml-1 mr-1"></i>View Attendance</a>
+                      <a href="{{ route('result.view') }}" class="btn btn-info float-right "><i class="fa fa-list fa-xs ml-1 mr-1"></i>View Result</a>
                     </h3>
 
                   </div><!-- /.card-header -->
                   <div class="card-body">
-                      <form action="{{ route('attendance.queries') }}" method="post" id="myForm" name="takeattendance">
+                      <form action="{{ route('result.queries') }}" method="post" id="myForm" name="addresult">
                           @csrf
                               <div class="form-row col-md-6">
                                   <label for="year" class="mb-4 mr-4">Year</label>
@@ -61,6 +61,10 @@
                                       <option value="1st">1st Semester</option>
                                       <option value="2nd">2nd Semester</option>
                                     </select>
+                                </div>
+                                <div class="form-row col-md-6">
+                                    <label for="roll" class="mr-4">Roll</label>
+                                    <input type="text" name="roll" id="roll" class="form-control float-right mb-4 col-md-10" placeholder="160601">
                                 </div>
                           <div>
                               <input type="submit" value="Take Attendance" class="btn btn-success">

@@ -37,7 +37,7 @@
                     <h3>
                     <i class="fa fa-plus-circle mr-1 text-info"></i>
                         Take Attendance
-                      <a href="{{ route('course.view') }}" class="btn btn-info float-right "><i class="fa fa-list fa-xs ml-1 mr-1"></i>Manage Course</a>
+                      <a href="{{ route('attendance.take') }}" class="btn btn-info float-right "><i class="fa fa-list fa-xs ml-1 mr-1"></i>Take Attendance</a>
                     </h3>
 
                   </div><!-- /.card-header -->

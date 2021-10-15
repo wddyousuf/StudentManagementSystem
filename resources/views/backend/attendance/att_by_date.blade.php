@@ -10,21 +10,13 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0">
-                    @if (isset($editData))
-                    Edit Course
-                    @else
-                        Add Course
-                    @endif
+                    Attendance By Date
                 </h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item active">@if (isset($editData))
-                    Edit Course
-                    @else
-                        Add Course
-                    @endif</li>
+                <li class="breadcrumb-item active">Attendance By Date</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -44,21 +36,13 @@
                   <div class="card-header">
                     <h3>
 
-                      @if (isset($editData))
-                      <i class="fa fa-edit mr-1 text-info"></i>
-                    Edit Course
-                    @else
-                    <i class="fa fa-plus-circle mr-1 text-info"></i>
-                        Add Course
-                    @endif
-                      <a href="{{ route('course.view') }}" class="btn btn-info float-right "><i class="fa fa-list fa-xs ml-1 mr-1"></i>Manage Course</a>
+                      Attendance By Date
+                      <a href="{{ route('attendance.take') }}" class="btn btn-info float-right "><i class="fa fa-list fa-xs ml-1 mr-1"></i>Take Attendance</a>
                     </h3>
 
                   </div><!-- /.card-header -->
                   <div class="card-body">
-                      <form action="{{ (@$editData)?route('course.update',$editData->id):route('attendance.store') }}" method="post" id="myForm" name="addcourse">
-                          @csrf
-                          <table id="example1" class="table table-bordered table-striped">
+                      <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                               <th>SL No</th>
@@ -70,7 +54,6 @@
                             <tbody>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $attendance->date }}</td>
-                                <input type="hidden" name="date" value="{{ $attendance->date }}">
                                 <td>
                                     <a href="{{ route('attendance.viewbydate',[$attendance->date,$year,$semester]) }}" class="btn btn-success btn-xs">View</a>
                                     <a href="{{ route('attendance.edit',[$attendance->date,$year,$semester]) }}" class="btn btn-success btn-xs">Update</a>
@@ -80,9 +63,7 @@
 
                         </table>
 
-                              <input type="submit" value="{{ (@$editData)?'Update':'Submit' }}" class="btn btn-success">
                           </div>
-                      </form>
                   </div>
               </div>
               </div><!-- /.card-body -->

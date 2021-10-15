@@ -316,7 +316,7 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route('result.add') }}" class="nav-link {{ ($route=='result.add')?'active':'' }}">
+                  <a href="{{ route('result.make') }}" class="nav-link {{ ($route=='result.make')?'active':'' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Add Result</p>
                   </a>
@@ -330,14 +330,14 @@
                 </a>
               </li>
             </ul>
-            <ul class="nav nav-treeview">
+            {{--  <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="{{ route('result.all') }}" class="nav-link {{ ($route=='result.all')?'active':'' }}">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Semester Result</p>
                   </a>
                 </li>
-              </ul>
+              </ul>  --}}
           </li>
           <li class="nav-item has-treeview {{ ($prefix=='/notice')?'menu-open': '' }}">
             <a href="#" class="nav-link">
