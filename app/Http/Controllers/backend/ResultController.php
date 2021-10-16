@@ -88,7 +88,7 @@ class ResultController extends Controller
 
         }
         $data->cigi=$cigi;
-        $data->sgpa=$cigi/$request->t_credit;
+        $data->sgpa= (float) $cigi/ (float) $request->t_credit;
         $data->save();
         $rsltId=Result::get()->last();
         $iddd=$rsltId->id;
@@ -129,47 +129,56 @@ class ResultController extends Controller
         $data=Result::find($id);
         $crs=DB::table('course_with_results')->where('resultId',$id)->distinct()->get(['courseNo']);
         $cigi=0;
-        foreach ($crs as $value) {
-            $crdt=DB::table('course_with_results')->where('resultId',$id)->where('courseNo',$value)->distinct()->get(['courseCredit']);
-            $grade=DB::table('course_with_results')->where('resultId',$id)->where('courseNo',$value)->distinct()->get(['courseGrade']);
-            return $crdt;
 
-            $data->$value=$request->$value;
-            if($request->$value>=80 && $request->$value<=100){
-                $data->$grade=4.00;
-                $cigi=$cigi+$data->$crdt*4.00;
-            }elseif($request->$value>=75 && $request->$value<80){
-                $data->$grade=3.75;
-                $cigi=$cigi+$data->$crdt*3.75;
-            }elseif($request->$value>=70 && $request->$value<75){
-                $data->$grade=3.50;
-                $cigi=$cigi+$data->$crdt*3.50;
-            }elseif($request->$value>=65 && $request->$value<70){
-                $data->$grade=3.25;
-                $cigi=$cigi+$data->$crdt*3.25;
-            }elseif($request->$value>=60 && $request->$value<65){
-                $data->$grade=3.00;
-                $cigi=$cigi+$data->$crdt*3.00;
-            }elseif($request->$value>=55 && $request->$value<60){
-                $data->$grade=2.75;
-                $cigi=$cigi+$data->$crdt*2.75;
-            }elseif($request->$value>=50 && $request->$value<55){
-                $data->$grade=2.50;
-                $cigi=$cigi+$data->$crdt*2.50;
-            }elseif($request->$value>=45 && $request->$value<50){
-                $data->$grade=2.25;
-                $cigi=$cigi+$data->$crdt*2.25;
-            }elseif($request->$value>=40 && $request->$value<45){
-                $data->$grade=2.00;
-                $cigi=$cigi+$data->$crdt*2.00;
+        foreach ($crs as $value) {
+
+            $crdt=DB::table('course_with_results')->where('resultId',$id)->where('courseNo',$value->courseNo)->first();
+            $grade=DB::table('course_with_results')->where('resultId',$id)->where('courseNo',$value->courseNo)->first();
+
+
+
+            //dd();
+            $crdtfld=$crdt->courseCredit;
+            $gradefld=$grade->courseGrade;
+            $mark=$value->courseNo;
+            $credit=$data->$crdtfld;
+            $data->$mark=$request->$mark;
+            if($request->$mark>=80 && $request->$mark<=100){
+                $data->$gradefld=4.00;
+                $cigi=$cigi+$credit*4.00;
+            }elseif($request->$mark>=75 && $request->$mark<80){
+                $data->$gradefld=3.75;
+                $cigi=$cigi+$credit*3.75;
+            }elseif($request->$mark>=70 && $request->$mark<75){
+                $data->$gradefld=3.50;
+                $cigi=$cigi+$credit*3.50;
+            }elseif($request->$mark>=65 && $request->$mark<70){
+                $data->$gradefld=3.25;
+                $cigi=$cigi+$credit*3.25;
+            }elseif($request->$mark>=60 && $request->$mark<65){
+                $data->$gradefld=3.00;
+                $cigi=$cigi+$credit*3.00;
+            }elseif($request->$mark>=55 && $request->$mark<60){
+                $data->$gradefld=2.75;
+                $cigi=$cigi+$credit*2.75;
+            }elseif($request->$mark>=50 && $request->$mark<55){
+                $data->$gradefld=2.50;
+                $cigi=$cigi+$credit*2.50;
+            }elseif($request->$mark>=45 && $request->$mark<50){
+                $data->$gradefld=2.25;
+                $cigi=$cigi+$credit*2.25;
+            }elseif($request->$mark>=40 && $request->$mark<45){
+                $data->$gradefld=2.00;
+                $cigi=$cigi+$credit*2.00;
             }else{
-                $data->$grade=0.00;
-                $cigi=$cigi+$data->$crdt*0.00;
+                $data->$gradefld=0.00;
+                $cigi=$cigi+$credit*0.00;
             }
+
         }
         $data->cigi=$cigi;
-        $data->sgpa=$cigi/$data->totalCredit;
+        $data->sgpa= (float) $cigi/ (float) $data->totalCredit;
         $data->save();
-        return redirect()->back()->with('success','Result Updated Successfully');
+        return redirect()->route('result.view')->with('success','Result Updated Successfully');
     }
 }

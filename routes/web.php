@@ -33,6 +33,14 @@ Route::group(['middleware'=>'auth'],function(){
         Route::post('/update/{id}','backend\UserController@userUpdate')->name('user.update');
         Route::get('/delete/{id}','backend\UserController@userDelete')->name('user.delete');
     });
+    Route::prefix('/student')->group(function(){
+        Route::get('/view','StudentController@studentView')->name('student.view');
+        Route::get('/add','StudentController@studentAdd')->name('student.add');
+        Route::post('/store','StudentController@studentStore')->name('student.store');
+        Route::get('/edit/{id}','StudentController@studentEdit')->name('student.edit');
+        Route::post('/update/{id}','StudentController@studentUpdate')->name('student.update');
+        Route::get('/delete/{id}','StudentController@studentDelete')->name('student.delete');
+    });
     Route::prefix('/profiles')->group(function(){
         Route::get('/view','backend\ProfileController@profilesView')->name('profiles.view');
         Route::get('/edit','backend\ProfileController@profilesEdit')->name('profiles.edit');

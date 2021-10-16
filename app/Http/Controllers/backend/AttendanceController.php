@@ -16,11 +16,12 @@ class AttendanceController extends Controller
     public function queries(Request $request){
         $year=$request->year;
         $semester=$request->smstr;
+        $data['att_quer']=DB::table('students')->where('year',$year)->where('semester',$semester)->first();
         $data['att_query']=DB::table('students')->where('year',$year)->where('semester',$semester)->get();
         return view('backend.attendance.get',$data);
     }
     public function store(Request $request){
-        $atchk=DB::table('attendances')->where('date',$request->att_date)->first();
+        $atchk=DB::table('attendances')->where('date',$request->att_date)->where('year',$request->year)->where('semester',$request->semester)->first();
         if($atchk){
             return redirect()->back()->with('error','Attendance Taken Already');
         }else{

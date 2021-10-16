@@ -256,6 +256,31 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item  has-treeview {{ ($prefix=='/student')?'menu-open': '' }}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Student Management
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('student.view') }}" class="nav-link {{ ($route=='student.view')?'active':'' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Student</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('student.add') }}" class="nav-link {{ ($route=='student.add')?'active':'' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Student</p>
+                  </a>
+                </li>
+              </ul>
+          </li>
           <li class="nav-item has-treeview {{ ($prefix=='/course')?'menu-open': '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>

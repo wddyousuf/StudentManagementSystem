@@ -93,6 +93,8 @@
                                   <th>Action</th>
                                 </tr>
                                 </thead>
+                                <input type="hidden" name="year" value="{{ $att_quer->year }}">
+                                <input type="hidden" name="year" value="{{ $att_quer->semester }}">
                                 @foreach ($att_query as $key=>$attendance)
                                 <tbody>
                                     <td>{{ $key+1 }}</td>

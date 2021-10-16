@@ -48,7 +48,6 @@
                                     <option value="" disabled>Select</option>
                                     <option value="Admin">Admin</option>
                                     <option value="Editor">Editor</option>
-                                    <option value="Student">Student</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
@@ -115,5 +114,3 @@
 
 
 @endsection
-
-
